@@ -1,0 +1,12 @@
+{% load sekizai_tags %}
+<style type="text/css">
+	.main-image-container { height:auto;}
+	#pressroom_gallery ul, #pressroom_gallery li { list-style:none; margin-left:0;}
+	#pressroom_gallery ul { margin-top:10px; margin-left:5px;}
+	#pressroom_gallery > li { margin: 10px 0 30px 0;}
+	#pressroom_gallery ul li .title { font-weight:bold;}
+	.main-image-container { display:none;}
+</style>
+{% addtoblock "js" %} 
+<script type="text/javascript" src="photogallery_list.js"></script> 
+{% endaddtoblock %}
