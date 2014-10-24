@@ -11,4 +11,3 @@ Extra-Page-Content:
 Page Content:  
 `Smart Snippet [ MTPBS Pressroom - Pressroom Feed ]`  
 - Uses pressroom-feed.txt as Smart Snippet Content  
-- Calls photogallery_list.js  
