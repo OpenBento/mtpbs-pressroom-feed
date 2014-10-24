@@ -1,12 +1,58 @@
 {% load sekizai_tags %}
 <style type="text/css">
-	.main-image-container { height:auto;}
-	#pressroom_gallery ul, #pressroom_gallery li { list-style:none; margin-left:0;}
-	#pressroom_gallery ul { margin-top:10px; margin-left:5px;}
-	#pressroom_gallery > li { margin: 10px 0 30px 0;}
-	#pressroom_gallery ul li .title { font-weight:bold;}
-	.main-image-container { display:none;}
+.main-image-container { height:auto;}
+#pressroom_gallery ul, #pressroom_gallery li { list-style:none; margin-left:0;}
+#pressroom_gallery ul { margin-top:10px; margin-left:5px;}
+#pressroom_gallery > li { margin: 10px 0 30px 0;}
+#pressroom_gallery ul li .title { font-weight:bold;}
+.main-image-container { display:block;}
+.dthumbs { display:block; height:auto !important; }
+
 </style>
-{% addtoblock "js" %} 
-<script type="text/javascript" src="photogallery_list.js"></script> 
+{% addtoblock "js" %}
+
+<script>
+idAttr = $("[id^='photogallery_']").attr('id');
+idArray = idAttr.split('_');
+id = idArray[1];
+
+$(function() {
+$('.bento-photogallery').addClass('text-plugin box');
+gallery = Galleria.get(0);
+setTimeout(function(){
+gallery.destroy();
+}, 500);
+ 
+//$("#photogallery_" + id).find('.thumb-image').attr('data-big');
+
+setTimeout(function(){
+$( "#photogallery_" + id + "_thumbs .thumb img" ).each(function() {
+ var $img = $(this);
+
+var titleH2 = $( this ).attr( "data-description" );
+var author = $( this ).attr( "data-author" );
+var slideLink = $( this ).attr( "data-big" );
+  
+//var slideLink = $( this ).parents('li').find('.flex-caption p a').attr('href');
+if (titleH2 != undefined) {
+$(this).parents('div.thumb').append('<h2>'+titleH2+ '</h2>');
+}
+if (author != undefined) {
+$(this).parents('div.thumb').append('<p>Credit: '+author+ '</p>');
+}
+$(this).parents('div.thumb').append("<p>&nbsp;</p>");
+
+if (slideLink != '') {
+$img.wrap('<a href="' + slideLink + '" class="link" target="new"> </a>');
+}
+}); //end photo gallery manip
+}, 1000);
+}); //end ready
+//gallery = Galleria.get(0);
+
+//$("#photogallery_" + id).html(''+gallery.getDataLength());
+</script>
+
+<!--<script type="text/javascript" src="http://pbs.bento.storage.s3.amazonaws.com/hostedbento-prod/filer_public/scripts/photogallery_list.js"></script><script type="text/javascript" src="http://wwwdev.montana.edu/unicom/bdavis/pbs-hack/photogallery_list.js"></script>-->
 {% endaddtoblock %}
+
